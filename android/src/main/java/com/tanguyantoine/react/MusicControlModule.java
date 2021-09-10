@@ -313,8 +313,10 @@ public class MusicControlModule extends ReactContextBaseJavaModule implements Co
     @ReactMethod
     public void observeAudioInterruptions(boolean enable) {
         if (enable) {
-            afListener.requestAudioFocus();
-        } else {
+            if(afListener != null) {
+                afListener.requestAudioFocus();
+            }
+        } else if(afListener != null) {
             afListener.abandonAudioFocus();
         }
     }

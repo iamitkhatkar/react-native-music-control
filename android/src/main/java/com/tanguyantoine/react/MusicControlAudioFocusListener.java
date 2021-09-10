@@ -53,8 +53,11 @@ public class MusicControlAudioFocusListener implements AudioManager.OnAudioFocus
             mFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
                     .setOnAudioFocusChangeListener(this).build();
 
-            mAudioManager.requestAudioFocus(mFocusRequest);
-        } else {
+            if(mAudioManager != null) {
+
+                mAudioManager.requestAudioFocus(mFocusRequest);
+            }
+        } else if(mAudioManager != null) {
             mAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         }
     }

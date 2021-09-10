@@ -212,8 +212,11 @@ public class MusicControlNotification {
                 Intent intent = new Intent(MusicControlNotification.NotificationService.this, MusicControlNotification.NotificationService.class);
                 // service has already been initialized.
                 // startForeground method should be called within 5 seconds.
-                ContextCompat.startForegroundService(MusicControlNotification.NotificationService.this, intent);
-
+                try {
+                    ContextCompat.startForegroundService(MusicControlNotification.NotificationService.this, intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 if(MusicControlModule.INSTANCE == null){
                     try {
                         MusicControlModule.INSTANCE.init();
